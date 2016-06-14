@@ -2,8 +2,15 @@
 {
     using System;
 
+    /// <summary>
+    /// Class Program.
+    /// </summary>
     class Program
     {
+        /// <summary>
+        /// Defines the entry point of the application.
+        /// </summary>
+        /// <param name="args">The arguments.</param>
         static void Main(string[] args)
         {
             var qPath = @"FormatName:Direct=OS:.\Private$\Spike";

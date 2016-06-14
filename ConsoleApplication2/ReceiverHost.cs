@@ -4,10 +4,20 @@
     using System.Messaging;
     using System.ServiceModel;
 
+    /// <summary>
+    /// Class ReceiverHost.
+    /// </summary>
     public class ReceiverHost : IDisposable
     {
+        /// <summary>
+        /// The host.
+        /// </summary>
         private ServiceHost host;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ReceiverHost"/> class.
+        /// </summary>
+        /// <param name="qPath">The queue path.</param>
         public ReceiverHost(string qPath)
         {
             var qSubPath = qPath.Substring(qPath.IndexOf("."));
@@ -23,11 +33,10 @@
             host.Open();
             Console.WriteLine("The receiver is ready");
         }
-        void host_Faulted(object sender, EventArgs e)
-        {
-            Console.WriteLine("Faulted. Damn!!");
-        }
 
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// </summary>
         public void Dispose()
         {
             if (host != null)
@@ -38,6 +47,16 @@
                 }
                 host.Close();
             }
+        }
+
+        /// <summary>
+        /// Handles the Faulted event of the host control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void host_Faulted(object sender, EventArgs e)
+        {
+            Console.WriteLine("Faulted!");
         }
     }
 }
